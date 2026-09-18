@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --parana-black: #0a0a0a;
+  --parana-white: #f3f1eb;
+  --parana-gray: #a5a5a0;
+  --parana-line: rgba(243, 241, 235, 0.16);
+  --parana-accent: #d8ff3e;
+
+  font-family: "Manrope", sans-serif;
+  color: var(--parana-white);
+  background: var(--parana-black);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--parana-black);
+  scrollbar-width: thin;
+  scrollbar-color: #333 var(--parana-black);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+
+  background: var(--parana-black);
+  color: var(--parana-white);
+
+  font-family: "Manrope", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100svh;
+  width: 100%;
+}
+
+main {
+  width: 100%;
+  overflow-x: clip;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--parana-accent);
+  color: var(--parana-black);
+}
+
+/* ---------------------------------------------------------
+   Scrollbar
+--------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--parana-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ---------------------------------------------------------
+   Typography helpers
+--------------------------------------------------------- */
+
+.font-display {
+  font-family: "Manrope", sans-serif;
+}
+
+.font-mono {
+  font-family: "DM Mono", monospace;
+}
+
+/* ---------------------------------------------------------
+   Accessibility / focus
+--------------------------------------------------------- */
+
+:focus-visible {
+  outline: 1px solid var(--parana-accent);
+  outline-offset: 4px;
+}
+
+/* ---------------------------------------------------------
+   Mobile behavior
+--------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------------------------------------------------------
+   Reduced motion
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}

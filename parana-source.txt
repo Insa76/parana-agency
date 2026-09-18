@@ -1,0 +1,2828 @@
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\layout\Footer.tsx
+
+============================================================
+
+import { useLanguage } from "../../context/LanguageContext";
+
+function Footer() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          explore: "Explorar",
+          contact: "Contacto",
+          work: "Trabajo",
+          about: "Nosotros",
+          network: "Red",
+          talk: "Hablemos",
+          location: "Construido desde el Nordeste",
+        }
+      : {
+          explore: "Explore",
+          contact: "Contact",
+          work: "Work",
+          about: "About",
+          network: "Network",
+          talk: "Let's talk",
+          location: "Built from the Northeast",
+        };
+
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="bg-[var(--parana-black)] text-[var(--parana-white)]">
+      <div className="mx-auto max-w-[1800px] px-5 pb-8 pt-16 md:px-8 lg:px-10">
+        <div className="grid gap-12 border-t border-[var(--parana-line)] pt-10 md:grid-cols-4">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <a
+              href="#top"
+              className="inline-flex flex-col leading-none"
+            >
+              <span className="font-display text-3xl font-bold tracking-[-0.05em]">
+                PARANÁ
+              </span>
+
+              <span className="mt-2 font-mono text-[8px] uppercase tracking-[0.22em] text-[var(--parana-gray)]">
+                Agency
+              </span>
+            </a>
+
+            <p className="mt-8 max-w-sm font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--parana-gray)]">
+              {t.location}
+            </p>
+          </div>
+
+          {/* Explore */}
+          <div>
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+              {t.explore}
+            </span>
+
+            <div className="mt-5 flex flex-col gap-3">
+              <a
+                href="#work"
+                className="w-fit text-sm transition-colors hover:text-[var(--parana-accent)]"
+              >
+                {t.work}
+              </a>
+
+              <a
+                href="#about"
+                className="w-fit text-sm transition-colors hover:text-[var(--parana-accent)]"
+              >
+                {t.about}
+              </a>
+
+              <a
+                href="#network"
+                className="w-fit text-sm transition-colors hover:text-[var(--parana-accent)]"
+              >
+                {t.network}
+              </a>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+              {t.contact}
+            </span>
+
+            <div className="mt-5 flex flex-col gap-3">
+              <a
+                href="mailto:hola@parana.agency"
+                className="w-fit text-sm transition-colors hover:text-[var(--parana-accent)]"
+              >
+                hola@parana.agency
+              </a>
+
+              <a
+                href="#contact"
+                className="w-fit text-sm transition-colors hover:text-[var(--parana-accent)]"
+              >
+                {t.talk}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="mt-20 flex flex-col gap-4 border-t border-[var(--parana-line)] pt-5 font-mono text-[8px] uppercase tracking-[0.16em] text-[var(--parana-gray)] md:flex-row md:items-center md:justify-between">
+          <span>© {year} Paraná Agency</span>
+
+          <span>Chaco / Corrientes / Argentina</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\layout\Navbar.tsx
+
+============================================================
+
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
+  const t = language === "es"
+    ? {
+        work: "Trabajo",
+        about: "Nosotros",
+        network: "Red",
+        contact: "Hablemos",
+      }
+    : {
+        work: "Work",
+        about: "About",
+        network: "Network",
+        contact: "Let's talk",
+      };
+
+  const links = [
+    { label: t.work, href: "#work" },
+    { label: t.about, href: "#about" },
+    { label: t.network, href: "#network" },
+  ];
+
+  const closeMenu = () => setMenuOpen(false);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50">
+      <nav className="mx-auto flex h-20 max-w-[1800px] items-center justify-between px-5 md:px-8 lg:px-10">
+        {/* Brand */}
+        <a
+          href="#top"
+          onClick={closeMenu}
+          className="group flex flex-col leading-none"
+        >
+          <span className="font-display text-lg font-bold tracking-[-0.04em] text-[var(--parana-white)]">
+            PARANÁ
+          </span>
+
+          <span className="mt-1 font-mono text-[8px] uppercase tracking-[0.22em] text-[var(--parana-gray)]">
+            Agency
+          </span>
+        </a>
+
+        {/* Desktop */}
+        <div className="hidden items-center gap-10 md:flex">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--parana-gray)] transition-colors duration-300 hover:text-[var(--parana-white)]"
+            >
+              {link.label}
+            </a>
+          ))}
+
+          <a
+            href="#contact"
+            className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--parana-white)] transition-colors duration-300 hover:text-[var(--parana-accent)]"
+          >
+            {t.contact}
+          </a>
+
+          {/* Language */}
+          <div className="ml-2 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em]">
+            <button
+              type="button"
+              onClick={() => setLanguage("es")}
+              className={`transition-colors ${
+                language === "es"
+                  ? "text-[var(--parana-white)]"
+                  : "text-[var(--parana-gray)] hover:text-[var(--parana-white)]"
+              }`}
+              aria-label="Cambiar a español"
+            >
+              ES
+            </button>
+
+            <span className="text-[var(--parana-line)]">/</span>
+
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              className={`transition-colors ${
+                language === "en"
+                  ? "text-[var(--parana-white)]"
+                  : "text-[var(--parana-gray)] hover:text-[var(--parana-white)]"
+              }`}
+              aria-label="Switch to English"
+            >
+              EN
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile controls */}
+        <div className="flex items-center gap-5 md:hidden">
+          <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em]">
+            <button
+              type="button"
+              onClick={() => setLanguage("es")}
+              className={
+                language === "es"
+                  ? "text-[var(--parana-white)]"
+                  : "text-[var(--parana-gray)]"
+              }
+            >
+              ES
+            </button>
+
+            <span className="text-[var(--parana-line)]">/</span>
+
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              className={
+                language === "en"
+                  ? "text-[var(--parana-white)]"
+                  : "text-[var(--parana-gray)]"
+              }
+            >
+              EN
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen((value) => !value)}
+            className="relative flex h-8 w-8 items-center justify-center"
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menuOpen}
+          >
+            <span className="absolute h-px w-5 bg-[var(--parana-white)] transition-transform duration-300" />
+
+            <span
+              className={`absolute h-px w-5 bg-[var(--parana-white)] transition-transform duration-300 ${
+                menuOpen ? "rotate-90" : "translate-y-2"
+              }`}
+            />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="absolute inset-x-0 top-20 border-b border-[var(--parana-line)] bg-[var(--parana-black)] md:hidden"
+          >
+            <div className="flex flex-col px-5 pb-8 pt-4">
+              {links.map((link, index) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="border-b border-[var(--parana-line)] py-5 font-display text-2xl font-medium tracking-[-0.03em] text-[var(--parana-white)]"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+
+              <motion.a
+                href="#contact"
+                onClick={closeMenu}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: links.length * 0.05 }}
+                className="pt-5 font-display text-2xl font-medium tracking-[-0.03em] text-[var(--parana-accent)]"
+              >
+                {t.contact}
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
+
+export default Navbar;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\projects\ProjectVisual.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+
+interface ProjectVisualProps {
+  type: "food" | "orbit" | "future";
+  image?: string;
+  alt?: string;
+}
+
+function ProjectVisual({
+  type,
+  image,
+  alt = "",
+}: ProjectVisualProps) {
+  /*
+   * IMAGE MODE
+   *
+   * Cuando tengamos las imágenes finales, solamente
+   * pasamos image="/images/projects/..." desde Projects.
+   */
+  if (image) {
+    return (
+      <div className="group relative aspect-[16/10] overflow-hidden border border-[var(--parana-line)] bg-[#111]">
+        <motion.img
+          src={image}
+          alt={alt}
+          initial={{ scale: 1.04 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.03]"
+        />
+
+        <div className="pointer-events-none absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-black/0" />
+      </div>
+    );
+  }
+
+  /*
+   * PLACEHOLDER ART DIRECTION
+   *
+   * Se mantiene hasta incorporar el material real.
+   */
+
+  return (
+    <div className="group relative aspect-[16/10] overflow-hidden border border-[var(--parana-line)]">
+      {type === "food" && (
+        <div className="absolute inset-0 bg-[#111]">
+          <div className="absolute inset-0">
+            <motion.div
+              animate={{
+                scale: [1, 1.08, 1],
+                opacity: [0.2, 0.28, 0.2],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute left-[5%] top-[15%] h-[55%] w-[40%] rounded-full bg-[var(--parana-accent)] blur-[110px]"
+            />
+          </div>
+
+          <div className="absolute inset-[8%] border border-white/10">
+            <span className="absolute left-[6%] top-[6%] font-mono text-[8px] uppercase tracking-[0.2em] text-white/40">
+              Paraná Drink & Food
+            </span>
+
+            <div className="absolute bottom-[7%] left-[6%]">
+              <span className="block font-display text-[clamp(3rem,7vw,8rem)] font-bold leading-[0.8] tracking-[-0.07em]">
+                FOOD
+              </span>
+
+              <span className="mt-3 block font-mono text-[8px] uppercase tracking-[0.2em] text-white/40">
+                Discover / Connect / Experience
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {type === "orbit" && (
+        <div className="absolute inset-0 overflow-hidden bg-[#101010]">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute left-1/2 top-1/2 aspect-square w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
+          />
+
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute left-1/2 top-1/2 aspect-square w-[42%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--parana-accent)]/30"
+          />
+
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+            <span className="block font-display text-[clamp(3rem,7vw,8rem)] font-bold leading-none tracking-[-0.07em]">
+              ORBIT
+            </span>
+
+            <span className="mt-4 block font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--parana-gray)]">
+              Hospitality Technology
+            </span>
+          </div>
+
+          <span className="absolute left-[8%] top-[8%] font-mono text-[8px] uppercase tracking-[0.2em] text-white/30">
+            Product 02
+          </span>
+        </div>
+      )}
+
+      {type === "future" && (
+        <div className="absolute inset-0 overflow-hidden bg-[var(--parana-accent)]">
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, #000 1px, transparent 1px),
+                linear-gradient(to bottom, #000 1px, transparent 1px)
+              `,
+              backgroundSize: "8% 12%",
+            }}
+          />
+
+          <motion.div
+            animate={{
+              x: [0, 20, 0],
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute right-[-5%] top-[-15%] h-[65%] w-[45%] rounded-full border border-black/15"
+          />
+
+          <div className="absolute bottom-[8%] left-[7%]">
+            <span className="block font-display text-[clamp(3rem,8vw,9rem)] font-bold leading-[0.8] tracking-[-0.07em] text-[var(--parana-black)]">
+              NEXT
+            </span>
+
+            <span className="mt-4 block font-mono text-[8px] uppercase tracking-[0.2em] text-black/50">
+              In progress
+            </span>
+          </div>
+
+          <span className="absolute right-[7%] top-[8%] font-mono text-[8px] uppercase tracking-[0.2em] text-black/50">
+            Paraná Agency
+          </span>
+        </div>
+      )}
+
+      <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
+    </div>
+  );
+}
+
+export default ProjectVisual;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Capabilities.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Capabilities() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          label: "03 / Capacidades",
+          titleLine1: "Una agencia.",
+          titleLine2: "Muchas disciplinas.",
+          items: [
+            {
+              number: "01",
+              title: "Marca",
+              description:
+                "Identidad, estrategia y sistemas visuales construidos para hacer que una marca tenga una presencia clara.",
+            },
+            {
+              number: "02",
+              title: "Marketing",
+              description:
+                "Estrategia, campañas y comunicación pensadas para generar movimiento y construir relaciones.",
+            },
+            {
+              number: "03",
+              title: "Creadores",
+              description:
+                "Conectamos marcas con personas, comunidades y creadores capaces de generar conversación real.",
+            },
+            {
+              number: "04",
+              title: "Tecnología",
+              description:
+                "Productos digitales, plataformas y herramientas que convierten ideas en experiencias reales.",
+            },
+            {
+              number: "05",
+              title: "IA",
+              description:
+                "Inteligencia artificial aplicada para crear nuevas posibilidades, automatizar procesos y mejorar experiencias.",
+            },
+            {
+              number: "06",
+              title: "Experiencia",
+              description:
+                "Diseñamos experiencias que conectan espacios físicos, digitales, personas y marcas.",
+            },
+          ],
+        }
+      : {
+          label: "03 / Capabilities",
+          titleLine1: "One agency.",
+          titleLine2: "Many disciplines.",
+          items: [
+            {
+              number: "01",
+              title: "Brand",
+              description:
+                "Identity, strategy and visual systems built to give brands a clear presence.",
+            },
+            {
+              number: "02",
+              title: "Marketing",
+              description:
+                "Strategy, campaigns and communication designed to create movement and build relationships.",
+            },
+            {
+              number: "03",
+              title: "Creators",
+              description:
+                "We connect brands with people, communities and creators capable of generating real conversation.",
+            },
+            {
+              number: "04",
+              title: "Technology",
+              description:
+                "Digital products, platforms and tools that turn ideas into real experiences.",
+            },
+            {
+              number: "05",
+              title: "AI",
+              description:
+                "Artificial intelligence applied to create new possibilities, automate processes and improve experiences.",
+            },
+            {
+              number: "06",
+              title: "Experience",
+              description:
+                "We design experiences that connect physical spaces, digital environments, people and brands.",
+            },
+          ],
+        };
+
+  return (
+    <section className="relative overflow-hidden bg-[var(--parana-black)] text-[var(--parana-white)]">
+      <div className="mx-auto max-w-[1800px] px-5 py-24 md:px-8 md:py-32 lg:px-10 lg:py-40">
+        {/* Header */}
+        <div className="grid gap-12 lg:grid-cols-[0.35fr_1fr]">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            {t.label}
+          </span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="max-w-5xl font-display text-[clamp(3rem,7vw,7rem)] font-bold leading-[0.88] tracking-[-0.055em]"
+          >
+            <span className="block">{t.titleLine1}</span>
+
+            <span className="block text-[var(--parana-gray)]">
+              {t.titleLine2}
+            </span>
+          </motion.h2>
+        </div>
+
+        {/* Capabilities */}
+        <div className="mt-24">
+          {t.items.map((item, index) => (
+            <motion.article
+              key={item.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{
+                duration: 0.65,
+                delay: index * 0.04,
+              }}
+              className="group relative border-t border-[var(--parana-line)] py-12 md:py-16 lg:py-20"
+            >
+              <div className="grid gap-8 md:grid-cols-[0.18fr_0.82fr]">
+                <div className="flex items-start justify-between md:block">
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-[var(--parana-gray)]">
+                    {item.number}
+                  </span>
+
+                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)] md:hidden">
+                    Paraná
+                  </span>
+                </div>
+
+                <div className="grid gap-8 lg:grid-cols-[1fr_0.55fr] lg:items-end">
+                  <h3 className="font-display text-[clamp(3rem,6vw,7rem)] font-bold leading-[0.85] tracking-[-0.06em] transition-colors duration-500 group-hover:text-[var(--parana-accent)]">
+                    {item.title}
+                  </h3>
+
+                  <p className="max-w-md text-sm leading-relaxed text-[var(--parana-gray)] md:text-base">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="pointer-events-none absolute right-0 top-1/2 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-[var(--parana-accent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block" />
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Capabilities;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Contact.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Contact() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          label: "08 / Hablemos",
+          titleLine1: "Construyamos",
+          titleLine2: "algo.",
+          cta: "Empezar una conversación",
+          email: "hola@parana.agency",
+          closing:
+            "Paraná es un lugar. Pero también es una forma de avanzar.",
+        }
+      : {
+          label: "08 / Let's talk",
+          titleLine1: "Let's build",
+          titleLine2: "something.",
+          cta: "Start a conversation",
+          email: "hola@parana.agency",
+          closing:
+            "Paraná is a place. But it's also a way forward.",
+        };
+
+  return (
+    <section
+      id="contact"
+      className="relative flex min-h-screen overflow-hidden bg-[var(--parana-black)] text-[var(--parana-white)]"
+    >
+      {/* Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, var(--parana-line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--parana-line) 1px, transparent 1px)
+          `,
+          backgroundSize: "clamp(70px, 10vw, 160px) clamp(70px, 10vw, 160px)",
+        }}
+      />
+
+      {/* Glow */}
+      <motion.div
+        animate={{
+          scale: [1, 1.12, 1],
+          opacity: [0.04, 0.08, 0.04],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[55vw] w-[55vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--parana-accent)] blur-[140px]"
+      />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1800px] flex-col justify-between px-5 py-24 md:px-8 md:py-32 lg:px-10 lg:py-40">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            {t.label}
+          </span>
+
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            2026
+          </span>
+        </div>
+
+        {/* Main CTA */}
+        <div className="relative flex flex-1 items-center py-24">
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative z-10 font-display text-[clamp(4rem,12vw,13rem)] font-bold leading-[0.78] tracking-[-0.07em]"
+            >
+              <span className="block">{t.titleLine1}</span>
+
+              <span className="block text-[var(--parana-accent)]">
+                {t.titleLine2}
+              </span>
+            </motion.h2>
+
+            <motion.a
+              href={`mailto:${t.email}`}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group mt-12 inline-flex items-center gap-5 border-b border-[var(--parana-line)] pb-3"
+            >
+              <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-white)] transition-colors duration-300 group-hover:text-[var(--parana-accent)]">
+                {t.cta}
+              </span>
+
+              <span className="text-[var(--parana-gray)] transition-transform duration-300 group-hover:translate-x-2">
+                →
+              </span>
+            </motion.a>
+
+            <p className="mt-4 font-mono text-[9px] tracking-[0.12em] text-[var(--parana-gray)]">
+              {t.email}
+            </p>
+          </div>
+
+          {/* Orbit */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 35,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="pointer-events-none absolute right-[-15%] top-1/2 hidden aspect-square w-[48vw] -translate-y-1/2 rounded-full border border-[var(--parana-line)] lg:block"
+          >
+            <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-[var(--parana-accent)]" />
+          </motion.div>
+        </div>
+
+        {/* Closing */}
+        <div className="flex justify-end border-t border-[var(--parana-line)] pt-8">
+          <p className="max-w-xl text-right font-display text-xl leading-tight tracking-[-0.03em] text-[var(--parana-gray)] md:text-2xl">
+            {t.closing}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Contact;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Hero.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Hero() {
+  const { language } = useLanguage();
+  const t = language === "es"
+    ? {
+        location: "Chaco / Corrientes / Argentina",
+        type: "Agencia Creativa Independiente",
+        titleLine1: "Construimos",
+        titleLine2: "lo que",
+        titleLine3: "viene.",
+        description:
+          "Marketing, creatividad, tecnología y experiencias para marcas que quieren avanzar.",
+        scroll: "Desplazar",
+      }
+    : {
+        location: "Chaco / Corrientes / Argentina",
+        type: "Independent Creative Agency",
+        titleLine1: "We build",
+        titleLine2: "what comes",
+        titleLine3: "next.",
+        description:
+          "Marketing, creativity, technology and experiences for brands that want to move forward.",
+        scroll: "Scroll",
+      };
+
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-screen overflow-hidden bg-[var(--parana-black)] text-[var(--parana-white)]"
+    >
+      {/* Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, var(--parana-line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--parana-line) 1px, transparent 1px)
+          `,
+          backgroundSize: "clamp(60px, 8vw, 140px) clamp(60px, 8vw, 140px)",
+        }}
+      />
+
+      {/* Ambient glow */}
+      <motion.div
+        className="pointer-events-none absolute right-[-15%] top-[15%] h-[50vw] w-[50vw] rounded-full bg-[var(--parana-accent)] opacity-[0.05] blur-[120px]"
+        animate={{
+          scale: [1, 1.08, 1],
+          opacity: [0.04, 0.07, 0.04],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1800px] flex-col justify-between px-5 pb-8 pt-32 md:px-8 md:pb-10 lg:px-10 lg:pt-36">
+        {/* Metadata */}
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            {t.location}
+          </span>
+
+          <span className="hidden font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)] sm:block">
+            {t.type}
+          </span>
+        </div>
+
+        {/* Main */}
+        <div className="mt-auto max-w-[1100px] pb-[8vh] pt-[18vh]">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="font-display text-[clamp(4rem,11vw,11rem)] font-bold leading-[0.82] tracking-[-0.065em]"
+          >
+            <span className="block">{t.titleLine1}</span>
+            <span className="block">{t.titleLine2}</span>
+            <span className="block text-[var(--parana-accent)]">
+              {t.titleLine3}
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+            className="mt-10 max-w-xl text-sm leading-relaxed text-[var(--parana-gray)] md:text-base"
+          >
+            {t.description}
+          </motion.p>
+        </div>
+
+        {/* Scroll */}
+        <div className="flex items-end justify-between">
+          <div className="flex items-center gap-3">
+            <span className="h-8 w-px bg-[var(--parana-accent)]" />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--parana-gray)]">
+              {t.scroll}
+            </span>
+          </div>
+
+          <span className="font-mono text-[8px] tracking-[0.2em] text-[var(--parana-gray)]">
+            01
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Introduction.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import SectionLabel from "../ui/SectionLabel";
+import RevealText from "../ui/RevealText";
+
+function Introduction() {
+  return (
+    <section
+      id="about"
+      className="relative flex min-h-screen overflow-hidden bg-[var(--parana-white)] text-[var(--parana-black)]"
+    >
+      <div className="mx-auto flex w-full max-w-[1600px] flex-col justify-between px-5 py-24 md:px-8 md:py-32">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <SectionLabel number="02" children="Why Paraná" />
+
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="hidden font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 md:block"
+          >
+            Chaco / Corrientes
+          </motion.span>
+        </div>
+
+        {/* Main statement */}
+        <div className="my-20 max-w-[1200px] md:my-28">
+          <RevealText>
+            <h2 className="text-[clamp(3rem,7.5vw,8rem)] font-bold leading-[0.9] tracking-[-0.065em]">
+              The world changed.
+            </h2>
+          </RevealText>
+
+          <RevealText delay={0.08}>
+            <h2 className="mt-2 text-[clamp(3rem,7.5vw,8rem)] font-bold leading-[0.9] tracking-[-0.065em] opacity-35">
+              Brands changed too.
+            </h2>
+          </RevealText>
+        </div>
+
+        {/* Bottom information */}
+        <div className="grid grid-cols-1 gap-12 border-t border-black/15 pt-6 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-4">
+            <RevealText>
+              <p className="max-w-[360px] text-sm leading-relaxed opacity-60 md:text-base">
+                Today, building a brand requires much more than advertising.
+              </p>
+            </RevealText>
+          </div>
+
+          <div className="md:col-span-5">
+            <RevealText delay={0.1}>
+              <p className="max-w-[500px] text-lg font-medium leading-[1.25] tracking-[-0.02em] md:text-2xl">
+                Identity. Content. Technology. Community. Experiences.
+              </p>
+            </RevealText>
+          </div>
+
+          <div className="flex items-end md:col-span-3 md:justify-end">
+            <RevealText delay={0.2}>
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-[var(--parana-black)]" />
+
+                <span className="font-mono text-[9px] uppercase tracking-[0.18em]">
+                  Paraná connects the pieces
+                </span>
+              </div>
+            </RevealText>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Introduction;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Network.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Network() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          label: "07 / Red",
+          titleLine1: "Construimos",
+          titleLine2: "con otros.",
+          description:
+            "Paraná no busca tener todas las respuestas dentro de una misma estructura. Conectamos a las personas, disciplinas y tecnologías adecuadas para cada proyecto.",
+          items: [
+            {
+              number: "01",
+              title: "Creativo",
+              description:
+                "Diseñadores, directores, fotógrafos, filmmakers y talentos creativos que amplían cada proyecto.",
+            },
+            {
+              number: "02",
+              title: "Creadores",
+              description:
+                "Personas y comunidades capaces de convertir una idea en contenido, conversación y cultura.",
+            },
+            {
+              number: "03",
+              title: "Tecnología",
+              description:
+                "Desarrolladores, especialistas y herramientas que transforman conceptos en productos y experiencias reales.",
+            },
+            {
+              number: "04",
+              title: "Partners",
+              description:
+                "Especialistas y organizaciones que aportan conocimiento, infraestructura y capacidades específicas.",
+            },
+          ],
+          closing: "La red hace que la idea sea más grande.",
+        }
+      : {
+          label: "07 / Network",
+          titleLine1: "We build",
+          titleLine2: "with others.",
+          description:
+            "Paraná doesn't try to keep every answer inside a single structure. We connect the right people, disciplines and technologies for each project.",
+          items: [
+            {
+              number: "01",
+              title: "Creative",
+              description:
+                "Designers, directors, photographers, filmmakers and creative talent that expand every project.",
+            },
+            {
+              number: "02",
+              title: "Creators",
+              description:
+                "People and communities capable of turning an idea into content, conversation and culture.",
+            },
+            {
+              number: "03",
+              title: "Technology",
+              description:
+                "Developers, specialists and tools that transform concepts into real products and experiences.",
+            },
+            {
+              number: "04",
+              title: "Partners",
+              description:
+                "Specialists and organizations bringing knowledge, infrastructure and specific capabilities.",
+            },
+          ],
+          closing: "The network makes the idea bigger.",
+        };
+
+  return (
+    <section
+      id="network"
+      className="relative overflow-hidden bg-[var(--parana-white)] text-[var(--parana-black)]"
+    >
+      <div className="mx-auto max-w-[1800px] px-5 py-24 md:px-8 md:py-32 lg:px-10 lg:py-40">
+        {/* Header */}
+        <div className="grid gap-12 lg:grid-cols-[0.35fr_1fr]">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-black/50">
+            {t.label}
+          </span>
+
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7 }}
+              className="max-w-5xl font-display text-[clamp(3rem,7vw,7rem)] font-bold leading-[0.88] tracking-[-0.055em]"
+            >
+              <span className="block">{t.titleLine1}</span>
+
+              <span className="block text-black/35">{t.titleLine2}</span>
+            </motion.h2>
+
+            <p className="mt-8 max-w-2xl text-sm leading-relaxed text-black/55 md:text-base">
+              {t.description}
+            </p>
+          </div>
+        </div>
+
+        {/* Network visualization */}
+        <div className="relative mx-auto my-24 aspect-square w-full max-w-[760px] md:my-32">
+          {/* Orbit 1 */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute inset-[8%] rounded-full border border-black/10"
+          />
+
+          {/* Orbit 2 */}
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 28,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute inset-[23%] rounded-full border border-black/10"
+          />
+
+          {/* Connecting lines */}
+          <div className="absolute left-1/2 top-1/2 h-[70%] w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-black/10" />
+
+          <div className="absolute left-1/2 top-1/2 h-[70%] w-px -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-black/10" />
+
+          {/* Center */}
+          <motion.div
+            animate={{
+              scale: [1, 1.03, 1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--parana-black)] text-[var(--parana-white)] md:h-36 md:w-36"
+          >
+            <span className="font-display text-xl font-bold tracking-[-0.04em]">
+              PARANÁ
+            </span>
+          </motion.div>
+
+          {/* Creative */}
+          <div className="absolute left-[4%] top-[18%] flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-[var(--parana-accent)]" />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em]">
+              {t.items[0].title}
+            </span>
+          </div>
+
+          {/* Creators */}
+          <div className="absolute right-[3%] top-[22%] flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-[var(--parana-accent)]" />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em]">
+              {t.items[1].title}
+            </span>
+          </div>
+
+          {/* Technology */}
+          <div className="absolute bottom-[17%] left-[8%] flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-[var(--parana-accent)]" />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em]">
+              {t.items[2].title}
+            </span>
+          </div>
+
+          {/* Partners */}
+          <div className="absolute bottom-[12%] right-[7%] flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-[var(--parana-accent)]" />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em]">
+              {t.items[3].title}
+            </span>
+          </div>
+        </div>
+
+        {/* Network items */}
+        <div className="border-t border-black/15">
+          {t.items.map((item, index) => (
+            <motion.div
+              key={item.number}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-5%" }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.05,
+              }}
+              className="grid gap-5 border-b border-black/15 py-8 md:grid-cols-[0.18fr_0.35fr_1fr] md:items-center md:py-10"
+            >
+              <span className="font-mono text-[9px] tracking-[0.18em] text-black/40">
+                {item.number}
+              </span>
+
+              <h3 className="font-display text-2xl font-medium tracking-[-0.03em] md:text-3xl">
+                {item.title}
+              </h3>
+
+              <p className="max-w-xl text-sm leading-relaxed text-black/55">
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Closing */}
+        <div className="mt-28 flex justify-end md:mt-40">
+          <p className="max-w-3xl font-display text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[0.9] tracking-[-0.05em]">
+            {t.closing}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Network;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Projects.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+import ProjectVisual from "../projects/ProjectVisual";
+
+function Projects() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          label: "06 / Hecho por Paraná",
+          titleLine1: "No hablamos",
+          titleLine2: "solamente de ideas.",
+          project1: {
+            number: "Proyecto 01",
+            category: "Plataforma / Gastronomía",
+            title: "Paraná Drink & Food",
+            description:
+              "Una plataforma para descubrir, recomendar y conectar con la escena gastronómica de la región.",
+          },
+          project2: {
+            number: "Proyecto 02",
+            category: "Tecnología / Hospitalidad",
+            title: "ORBIT",
+            description:
+              "Tecnología para restaurantes y espacios gastronómicos. Una nueva forma de conectar mesas, clientes y equipos.",
+          },
+          project3: {
+            number: "Proyecto 03",
+            category: "Paraná Agency",
+            title: "¿Qué sigue?",
+            description:
+              "Estamos construyendo nuevas ideas, productos y experiencias.",
+          },
+        }
+      : {
+          label: "06 / Made by Paraná",
+          titleLine1: "We don't just talk",
+          titleLine2: "about ideas.",
+          project1: {
+            number: "Project 01",
+            category: "Platform / Gastronomy",
+            title: "Paraná Drink & Food",
+            description:
+              "A platform to discover, recommend and connect with the region's food and drink scene.",
+          },
+          project2: {
+            number: "Project 02",
+            category: "Technology / Hospitality",
+            title: "ORBIT",
+            description:
+              "Technology for restaurants and hospitality spaces. A new way to connect tables, guests and teams.",
+          },
+          project3: {
+            number: "Project 03",
+            category: "Paraná Agency",
+            title: "What's next?",
+            description:
+              "We are building new ideas, products and experiences.",
+          },
+        };
+
+  const projects = [
+    {
+      ...t.project1,
+      type: "food" as const,
+    },
+    {
+      ...t.project2,
+      type: "orbit" as const,
+    },
+    {
+      ...t.project3,
+      type: "future" as const,
+    },
+  ];
+
+  return (
+    <section
+      id="work"
+      className="relative overflow-hidden bg-[var(--parana-black)] text-[var(--parana-white)]"
+    >
+      <div className="mx-auto max-w-[1800px] px-5 py-24 md:px-8 md:py-32 lg:px-10 lg:py-40">
+        {/* Header */}
+        <div className="grid gap-12 lg:grid-cols-[0.35fr_1fr]">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            {t.label}
+          </span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="max-w-5xl font-display text-[clamp(3rem,7vw,7rem)] font-bold leading-[0.88] tracking-[-0.055em]"
+          >
+            <span className="block">{t.titleLine1}</span>
+
+            <span className="block text-[var(--parana-gray)]">
+              {t.titleLine2}
+            </span>
+          </motion.h2>
+        </div>
+
+        {/* Projects */}
+        <div className="mt-24 space-y-28 md:mt-32 md:space-y-40">
+          {projects.map((project) => (
+            <motion.article
+              key={project.number}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7 }}
+            >
+              <ProjectVisual
+                type={project.type}
+                alt={project.title}
+              />
+
+              {/* Information */}
+              <div className="mt-7 grid gap-6 md:grid-cols-[0.18fr_0.82fr]">
+                <div className="flex items-start justify-between md:block">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+                    {project.number}
+                  </span>
+
+                  <span className="font-mono text-[8px] uppercase tracking-[0.16em] text-[var(--parana-gray)] md:mt-3 md:block">
+                    {project.category}
+                  </span>
+                </div>
+
+                <div className="grid gap-6 lg:grid-cols-[1fr_0.55fr] lg:items-end">
+                  <h3 className="font-display text-[clamp(2.5rem,5vw,5.5rem)] font-bold leading-[0.88] tracking-[-0.055em]">
+                    {project.title}
+                  </h3>
+
+                  <p className="max-w-md text-sm leading-relaxed text-[var(--parana-gray)]">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Projects;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Region.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Region() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          label: "04 / Origen",
+          titleLine1: "Nacimos en",
+          titleLine2: "el Nordeste.",
+          description:
+            "Estamos cerca de las personas, los negocios y la cultura que conocemos. Desde Chaco y Corrientes construimos para la región y para todo lo que viene después.",
+          coordinates: "27°27′S / 58°59′W",
+          region: "NEA / Argentina",
+        }
+      : {
+          label: "04 / Origin",
+          titleLine1: "Born in",
+          titleLine2: "the Northeast.",
+          description:
+            "We are close to the people, businesses and culture we know. From Chaco and Corrientes, we build for the region and for everything that comes next.",
+          coordinates: "27°27′S / 58°59′W",
+          region: "NEA / Argentina",
+        };
+
+  return (
+    <section className="relative overflow-hidden bg-[var(--parana-white)] text-[var(--parana-black)]">
+      <div className="mx-auto max-w-[1800px] px-5 py-24 md:px-8 md:py-32 lg:px-10 lg:py-40">
+        <div className="grid gap-20 lg:grid-cols-[0.35fr_1fr]">
+          {/* Label */}
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-black/50">
+            {t.label}
+          </span>
+
+          <div>
+            {/* Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7 }}
+              className="max-w-5xl font-display text-[clamp(3rem,7vw,7rem)] font-bold leading-[0.88] tracking-[-0.055em]"
+            >
+              <span className="block">{t.titleLine1}</span>
+
+              <span className="block text-black/35">{t.titleLine2}</span>
+            </motion.h2>
+
+            {/* Orbit */}
+            <div className="relative mx-auto my-24 aspect-square w-full max-w-[680px]">
+              {/* Outer orbit */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 45,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute inset-[8%] rounded-full border border-black/15"
+              />
+
+              {/* Inner orbit */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute inset-[22%] rounded-full border border-black/10"
+              />
+
+              {/* Center */}
+              <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--parana-black)] text-center text-[var(--parana-white)] md:h-36 md:w-36">
+                <div>
+                  <span className="block font-display text-xl font-bold tracking-[-0.04em]">
+                    PARANÁ
+                  </span>
+
+                  <span className="mt-1 block font-mono text-[7px] uppercase tracking-[0.2em] text-white/50">
+                    {t.region}
+                  </span>
+                </div>
+              </div>
+
+              {/* Chaco */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute left-[5%] top-[28%]"
+              >
+                <span className="font-mono text-[9px] uppercase tracking-[0.16em]">
+                  CHACO
+                </span>
+              </motion.div>
+
+              {/* Corrientes */}
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute right-[2%] top-[22%]"
+              >
+                <span className="font-mono text-[9px] uppercase tracking-[0.16em]">
+                  CORRIENTES
+                </span>
+              </motion.div>
+
+              {/* NEA */}
+              <motion.div
+                animate={{ x: [0, 6, 0] }}
+                transition={{
+                  duration: 5.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-[15%] left-[18%]"
+              >
+                <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-black/45">
+                  NEA
+                </span>
+              </motion.div>
+
+              {/* Argentina */}
+              <div className="absolute bottom-[10%] right-[10%]">
+                <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-black/45">
+                  ARGENTINA
+                </span>
+              </div>
+
+              {/* Accent point */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.6, 1, 0.6],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute left-[38%] top-[17%] h-2 w-2 rounded-full bg-[var(--parana-accent)]"
+              />
+            </div>
+
+            {/* Bottom information */}
+            <div className="grid gap-10 border-t border-black/15 pt-8 md:grid-cols-[1fr_auto] md:items-end">
+              <p className="max-w-2xl text-sm leading-relaxed text-black/60 md:text-base">
+                {t.description}
+              </p>
+
+              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-black/40">
+                {t.coordinates}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Region;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections\Verticals.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
+
+function Verticals() {
+  const { language } = useLanguage();
+
+  const t =
+    language === "es"
+      ? {
+          label: "05 / Dónde trabajamos",
+          titleLine1: "No creemos en",
+          titleLine2: "las categorías.",
+          subtitle: "Mundos diferentes. Una misma forma de hacer.",
+          items: [
+            "Gastronomía",
+            "Hospitalidad",
+            "Turismo",
+            "Eventos",
+            "Entretenimiento",
+            "Retail",
+            "Marcas",
+          ],
+          closingLine1: "Y todo lo que",
+          closingLine2: "venga después.",
+          closingDescription:
+            "Traenos la idea. Nosotros construimos desde ahí.",
+        }
+      : {
+          label: "05 / Where we work",
+          titleLine1: "We don't believe in",
+          titleLine2: "categories.",
+          subtitle: "Different worlds. One approach.",
+          items: [
+            "Gastronomy",
+            "Hospitality",
+            "Tourism",
+            "Events",
+            "Entertainment",
+            "Retail",
+            "Brands",
+          ],
+          closingLine1: "And whatever",
+          closingLine2: "comes next.",
+          closingDescription:
+            "Bring us the idea. We'll build from there.",
+        };
+
+  return (
+    <section className="relative overflow-hidden bg-[var(--parana-black)] text-[var(--parana-white)]">
+      <div className="mx-auto max-w-[1800px] px-5 py-24 md:px-8 md:py-32 lg:px-10 lg:py-40">
+        {/* Header */}
+        <div className="grid gap-12 lg:grid-cols-[0.35fr_1fr]">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            {t.label}
+          </span>
+
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7 }}
+              className="max-w-5xl font-display text-[clamp(3rem,7vw,7rem)] font-bold leading-[0.88] tracking-[-0.055em]"
+            >
+              <span className="block">{t.titleLine1}</span>
+
+              <span className="block text-[var(--parana-gray)]">
+                {t.titleLine2}
+              </span>
+            </motion.h2>
+
+            <p className="mt-8 font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+              {t.subtitle}
+            </p>
+          </div>
+        </div>
+
+        {/* Verticals */}
+        <div className="mt-24 border-t border-[var(--parana-line)]">
+          {t.items.map((item, index) => (
+            <motion.div
+              key={item}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-5%" }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.04,
+              }}
+              className="group flex items-center justify-between border-b border-[var(--parana-line)] py-7 md:py-10"
+            >
+              <div className="flex items-center gap-6 md:gap-10">
+                <span className="font-mono text-[9px] tracking-[0.16em] text-[var(--parana-gray)]">
+                  0{index + 1}
+                </span>
+
+                <span className="font-display text-[clamp(2rem,4vw,4.5rem)] font-medium leading-none tracking-[-0.045em] transition-transform duration-500 group-hover:translate-x-3 group-hover:text-[var(--parana-accent)]">
+                  {item}
+                </span>
+              </div>
+
+              <span className="hidden font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--parana-gray)] md:block">
+                Paraná
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Closing */}
+        <div className="grid gap-10 pt-32 md:grid-cols-[0.35fr_1fr] md:pt-44">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--parana-gray)]">
+            06
+          </span>
+
+          <div>
+            <h3 className="font-display text-[clamp(3rem,6vw,6.5rem)] font-bold leading-[0.88] tracking-[-0.055em]">
+              <span className="block">{t.closingLine1}</span>
+
+              <span className="block text-[var(--parana-accent)]">
+                {t.closingLine2}
+              </span>
+            </h3>
+
+            <p className="mt-8 max-w-xl text-sm leading-relaxed text-[var(--parana-gray)] md:text-base">
+              {t.closingDescription}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Verticals;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\ui\RevealText.tsx
+
+============================================================
+
+import { motion } from "framer-motion";
+
+interface RevealTextProps {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}
+
+function RevealText({
+  children,
+  delay = 0,
+  className = "",
+}: RevealTextProps) {
+  return (
+    <div className="overflow-hidden">
+      <motion.div
+        initial={{ y: "105%" }}
+        whileInView={{ y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{
+          duration: 0.9,
+          delay,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+export default RevealText;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\ui\SectionLabel.tsx
+
+============================================================
+
+interface SectionLabelProps {
+  number: string;
+  children: string;
+}
+
+function SectionLabel({ number, children }: SectionLabelProps) {
+  return (
+    <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--parana-gray)]">
+      <span className="text-[var(--parana-accent)]">{number}</span>
+
+      <span className="h-px w-8 bg-[var(--parana-line)]" />
+
+      <span>{children}</span>
+    </div>
+  );
+}
+
+export default SectionLabel;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\context\LanguageContext.tsx
+
+============================================================
+
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+
+export type Language = "es" | "en";
+
+interface LanguageContextValue {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  toggleLanguage: () => void;
+}
+
+const LanguageContext = createContext<LanguageContextValue | undefined>(
+  undefined
+);
+
+const STORAGE_KEY = "parana-language";
+
+function getInitialLanguage(): Language {
+  if (typeof window === "undefined") {
+    return "es";
+  }
+
+  const saved = window.localStorage.getItem(STORAGE_KEY);
+
+  if (saved === "es" || saved === "en") {
+    return saved;
+  }
+
+  return "es";
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+
+  const setLanguage = (nextLanguage: Language) => {
+    setLanguageState(nextLanguage);
+
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(STORAGE_KEY, nextLanguage);
+      document.documentElement.lang = nextLanguage;
+    }
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === "es" ? "en" : "es");
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const value = useMemo(
+    () => ({
+      language,
+      setLanguage,
+      toggleLanguage,
+    }),
+    [language]
+  );
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+
+  if (!context) {
+    throw new Error(
+      "useLanguage must be used inside a LanguageProvider"
+    );
+  }
+
+  return context;
+}
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\data\capabilities.ts
+
+============================================================
+
+export interface Capability {
+  number: string;
+  title: string;
+  description: string;
+  keywords: string[];
+}
+
+export const capabilities: Capability[] = [
+  {
+    number: "01",
+    title: "Brand",
+    description:
+      "Identities, positioning and visual systems built to make brands recognizable and relevant.",
+    keywords: ["Strategy", "Identity", "Design"],
+  },
+  {
+    number: "02",
+    title: "Marketing",
+    description:
+      "Campaigns, content and digital strategies designed to turn attention into opportunities.",
+    keywords: ["Strategy", "Content", "Performance"],
+  },
+  {
+    number: "03",
+    title: "Creators",
+    description:
+      "We connect brands with creators and communities that already have people's attention.",
+    keywords: ["Influencers", "Content", "Community"],
+  },
+  {
+    number: "04",
+    title: "Technology",
+    description:
+      "Websites, platforms and digital products that turn ideas into real experiences.",
+    keywords: ["Web", "Platforms", "Products"],
+  },
+  {
+    number: "05",
+    title: "AI",
+    description:
+      "Artificial intelligence and automation applied to the way businesses operate and grow.",
+    keywords: ["AI", "Automation", "Data"],
+  },
+  {
+    number: "06",
+    title: "Experience",
+    description:
+      "Physical and digital experiences designed to create stronger connections between brands and people.",
+    keywords: ["Events", "Hospitality", "Activation"],
+  },
+];
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\data\network.ts
+
+============================================================
+
+export interface NetworkItem {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export const networkItems: NetworkItem[] = [
+  {
+    number: "01",
+    title: "Creative",
+    description:
+      "Diseñadores, directores, fotógrafos, filmmakers y talentos creativos que amplían cada proyecto.",
+  },
+  {
+    number: "02",
+    title: "Creators",
+    description:
+      "Personas y comunidades capaces de convertir una idea en contenido, conversación y cultura.",
+  },
+  {
+    number: "03",
+    title: "Technology",
+    description:
+      "Desarrolladores, especialistas y herramientas que transforman conceptos en productos y experiencias reales.",
+  },
+  {
+    number: "04",
+    title: "Partners",
+    description:
+      "Especialistas y organizaciones que aportan conocimiento, infraestructura y capacidades específicas.",
+  },
+];
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\data\projects.ts
+
+============================================================
+
+export interface Project {
+  number: string;
+  name: string;
+  category: string;
+  description: string;
+  tags: string[];
+  accent: string;
+}
+
+export const projects: Project[] = [
+  {
+    number: "01",
+    name: "Paraná Drink & Food",
+    category: "Platform / Gastronomy",
+    description:
+      "A regional platform for discovering places, recommendations, experiences and everything happening around food and drink.",
+    tags: ["Discovery", "Content", "Community", "Experiences"],
+    accent: "drink-food",
+  },
+  {
+    number: "02",
+    name: "ORBIT",
+    category: "Technology / Hospitality",
+    description:
+      "Digital experiences for restaurants and bars, connecting customers, staff, technology and data in one ecosystem.",
+    tags: ["AI", "Restaurant Tech", "Experience", "Data"],
+    accent: "orbit",
+  },
+  {
+    number: "03",
+    name: "Future Projects",
+    category: "Paraná Agency",
+    description:
+      "New ideas, products and experiences are already taking shape.",
+    tags: ["Ideas", "Technology", "Brands", "Experiences"],
+    accent: "future",
+  },
+];
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\data\translations.ts
+
+============================================================
+
+export const translations = {
+  es: {
+    nav: {
+      work: "Trabajo",
+      about: "Nosotros",
+      network: "Red",
+      contact: "Hablemos",
+    },
+
+    hero: {
+      location: "Chaco / Corrientes / Argentina",
+      type: "Agencia Creativa Independiente",
+      titleLine1: "Construimos",
+      titleLine2: "lo que",
+      titleLine3: "viene.",
+      description:
+        "Marketing, creatividad, tecnología y experiencias para marcas que quieren avanzar.",
+      scroll: "Desplazar",
+    },
+
+    introduction: {
+      label: "02 / Por qué Paraná",
+      titleLine1: "El mundo cambió.",
+      titleLine2: "Las marcas también.",
+      description:
+        "Las personas, las comunidades y las formas de conectar cambiaron. Las marcas necesitan nuevas maneras de pensar, crear y relacionarse.",
+      items: [
+        "Identidad",
+        "Contenido",
+        "Tecnología",
+        "Comunidad",
+        "Experiencias",
+      ],
+      closing: "Paraná conecta las piezas.",
+    },
+
+    capabilities: {
+      label: "03 / Capacidades",
+      titleLine1: "Una agencia.",
+      titleLine2: "Muchas disciplinas.",
+      items: [
+        {
+          number: "01",
+          title: "Marca",
+          description:
+            "Identidad, estrategia y sistemas visuales construidos para hacer que una marca tenga una presencia clara.",
+        },
+        {
+          number: "02",
+          title: "Marketing",
+          description:
+            "Estrategia, campañas y comunicación pensadas para generar movimiento y construir relaciones.",
+        },
+        {
+          number: "03",
+          title: "Creadores",
+          description:
+            "Conectamos marcas con personas, comunidades y creadores capaces de generar conversación real.",
+        },
+        {
+          number: "04",
+          title: "Tecnología",
+          description:
+            "Productos digitales, plataformas y herramientas que convierten ideas en experiencias reales.",
+        },
+        {
+          number: "05",
+          title: "IA",
+          description:
+            "Inteligencia artificial aplicada para crear nuevas posibilidades, automatizar procesos y mejorar experiencias.",
+        },
+        {
+          number: "06",
+          title: "Experiencia",
+          description:
+            "Diseñamos experiencias que conectan espacios físicos, digitales, personas y marcas.",
+        },
+      ],
+    },
+
+    region: {
+      label: "04 / Origen",
+      titleLine1: "Nacimos en",
+      titleLine2: "el Nordeste.",
+      description:
+        "Estamos cerca de las personas, los negocios y la cultura que conocemos. Desde Chaco y Corrientes construimos para la región y para todo lo que viene después.",
+      coordinates: "27°27′S / 58°59′W",
+      region: "NEA / Argentina",
+    },
+
+    verticals: {
+      label: "05 / Dónde trabajamos",
+      titleLine1: "No creemos en",
+      titleLine2: "las categorías.",
+      subtitle: "Mundos diferentes. Una misma forma de hacer.",
+      items: [
+        "Gastronomía",
+        "Hospitalidad",
+        "Turismo",
+        "Eventos",
+        "Entretenimiento",
+        "Retail",
+        "Marcas",
+      ],
+      closingLine1: "Y todo lo que",
+      closingLine2: "venga después.",
+      closingDescription:
+        "Traenos la idea. Nosotros construimos desde ahí.",
+    },
+
+    projects: {
+      label: "06 / Hecho por Paraná",
+      titleLine1: "No hablamos",
+      titleLine2: "solamente de ideas.",
+
+      project1: {
+        number: "Proyecto 01",
+        category: "Plataforma / Gastronomía",
+        title: "Paraná Drink & Food",
+        description:
+          "Una plataforma para descubrir, recomendar y conectar con la escena gastronómica de la región.",
+      },
+
+      project2: {
+        number: "Proyecto 02",
+        category: "Tecnología / Hospitalidad",
+        title: "ORBIT",
+        description:
+          "Tecnología para restaurantes y espacios gastronómicos. Una nueva forma de conectar mesas, clientes y equipos.",
+      },
+
+      project3: {
+        number: "Proyecto 03",
+        category: "Paraná Agency",
+        title: "¿Qué sigue?",
+        description:
+          "Estamos construyendo nuevas ideas, productos y experiencias.",
+      },
+    },
+
+    network: {
+      label: "07 / Red",
+      titleLine1: "Construimos",
+      titleLine2: "con otros.",
+      description:
+        "Paraná no busca tener todas las respuestas dentro de una misma estructura. Conectamos a las personas, disciplinas y tecnologías adecuadas para cada proyecto.",
+      items: [
+        {
+          number: "01",
+          title: "Creativo",
+          description:
+            "Diseñadores, directores, fotógrafos, filmmakers y talentos creativos que amplían cada proyecto.",
+        },
+        {
+          number: "02",
+          title: "Creadores",
+          description:
+            "Personas y comunidades capaces de convertir una idea en contenido, conversación y cultura.",
+        },
+        {
+          number: "03",
+          title: "Tecnología",
+          description:
+            "Desarrolladores, especialistas y herramientas que transforman conceptos en productos y experiencias reales.",
+        },
+        {
+          number: "04",
+          title: "Partners",
+          description:
+            "Especialistas y organizaciones que aportan conocimiento, infraestructura y capacidades específicas.",
+        },
+      ],
+      closing: "La red hace que la idea sea más grande.",
+    },
+
+    contact: {
+      label: "08 / Hablemos",
+      titleLine1: "Construyamos",
+      titleLine2: "algo.",
+      cta: "Empezar una conversación",
+      email: "hola@parana.agency",
+      closing:
+        "Paraná es un lugar. Pero también es una forma de avanzar.",
+    },
+
+    footer: {
+      explore: "Explorar",
+      contact: "Contacto",
+      work: "Trabajo",
+      about: "Nosotros",
+      network: "Red",
+      talk: "Hablemos",
+      location: "Construido desde el Nordeste",
+    },
+  },
+
+  en: {
+    nav: {
+      work: "Work",
+      about: "About",
+      network: "Network",
+      contact: "Let's talk",
+    },
+
+    hero: {
+      location: "Chaco / Corrientes / Argentina",
+      type: "Independent Creative Agency",
+      titleLine1: "We build",
+      titleLine2: "what comes",
+      titleLine3: "next.",
+      description:
+        "Marketing, creativity, technology and experiences for brands that want to move forward.",
+      scroll: "Scroll",
+    },
+
+    introduction: {
+      label: "02 / Why Paraná",
+      titleLine1: "The world changed.",
+      titleLine2: "Brands changed too.",
+      description:
+        "People, communities and the ways we connect have changed. Brands need new ways to think, create and build relationships.",
+      items: [
+        "Identity",
+        "Content",
+        "Technology",
+        "Community",
+        "Experiences",
+      ],
+      closing: "Paraná connects the pieces.",
+    },
+
+    capabilities: {
+      label: "03 / Capabilities",
+      titleLine1: "One agency.",
+      titleLine2: "Many disciplines.",
+      items: [
+        {
+          number: "01",
+          title: "Brand",
+          description:
+            "Identity, strategy and visual systems built to give brands a clear presence.",
+        },
+        {
+          number: "02",
+          title: "Marketing",
+          description:
+            "Strategy, campaigns and communication designed to create movement and build relationships.",
+        },
+        {
+          number: "03",
+          title: "Creators",
+          description:
+            "We connect brands with people, communities and creators capable of generating real conversation.",
+        },
+        {
+          number: "04",
+          title: "Technology",
+          description:
+            "Digital products, platforms and tools that turn ideas into real experiences.",
+        },
+        {
+          number: "05",
+          title: "AI",
+          description:
+            "Artificial intelligence applied to create new possibilities, automate processes and improve experiences.",
+        },
+        {
+          number: "06",
+          title: "Experience",
+          description:
+            "We design experiences that connect physical spaces, digital environments, people and brands.",
+        },
+      ],
+    },
+
+    region: {
+      label: "04 / Origin",
+      titleLine1: "Born in",
+      titleLine2: "the Northeast.",
+      description:
+        "We are close to the people, businesses and culture we know. From Chaco and Corrientes, we build for the region and for everything that comes next.",
+      coordinates: "27°27′S / 58°59′W",
+      region: "NEA / Argentina",
+    },
+
+    verticals: {
+      label: "05 / Where we work",
+      titleLine1: "We don't believe in",
+      titleLine2: "categories.",
+      subtitle: "Different worlds. One approach.",
+      items: [
+        "Gastronomy",
+        "Hospitality",
+        "Tourism",
+        "Events",
+        "Entertainment",
+        "Retail",
+        "Brands",
+      ],
+      closingLine1: "And whatever",
+      closingLine2: "comes next.",
+      closingDescription:
+        "Bring us the idea. We'll build from there.",
+    },
+
+    projects: {
+      label: "06 / Made by Paraná",
+      titleLine1: "We don't just talk",
+      titleLine2: "about ideas.",
+
+      project1: {
+        number: "Project 01",
+        category: "Platform / Gastronomy",
+        title: "Paraná Drink & Food",
+        description:
+          "A platform to discover, recommend and connect with the region's food and drink scene.",
+      },
+
+      project2: {
+        number: "Project 02",
+        category: "Technology / Hospitality",
+        title: "ORBIT",
+        description:
+          "Technology for restaurants and hospitality spaces. A new way to connect tables, guests and teams.",
+      },
+
+      project3: {
+        number: "Project 03",
+        category: "Paraná Agency",
+        title: "What's next?",
+        description:
+          "We are building new ideas, products and experiences.",
+      },
+    },
+
+    network: {
+      label: "07 / Network",
+      titleLine1: "We build",
+      titleLine2: "with others.",
+      description:
+        "Paraná doesn't try to keep every answer inside a single structure. We connect the right people, disciplines and technologies for each project.",
+      items: [
+        {
+          number: "01",
+          title: "Creative",
+          description:
+            "Designers, directors, photographers, filmmakers and creative talent that expand every project.",
+        },
+        {
+          number: "02",
+          title: "Creators",
+          description:
+            "People and communities capable of turning an idea into content, conversation and culture.",
+        },
+        {
+          number: "03",
+          title: "Technology",
+          description:
+            "Developers, specialists and tools that transform concepts into real products and experiences.",
+        },
+        {
+          number: "04",
+          title: "Partners",
+          description:
+            "Specialists and organizations bringing knowledge, infrastructure and specific capabilities.",
+        },
+      ],
+      closing: "The network makes the idea bigger.",
+    },
+
+    contact: {
+      label: "08 / Let's talk",
+      titleLine1: "Let's build",
+      titleLine2: "something.",
+      cta: "Start a conversation",
+      email: "hola@parana.agency",
+      closing:
+        "Paraná is a place. But it's also a way forward.",
+    },
+
+    footer: {
+      explore: "Explore",
+      contact: "Contact",
+      work: "Work",
+      about: "About",
+      network: "Network",
+      talk: "Let's talk",
+      location: "Built from the Northeast",
+    },
+  },
+} as const;
+
+export type Translation = (typeof translations)[keyof typeof translations];
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\data\verticals.ts
+
+============================================================
+
+export interface Vertical {
+  number: string;
+  title: string;
+  description: string;
+  services: string[];
+}
+
+export const verticals: Vertical[] = [
+  {
+    number: "01",
+    title: "Gastronomy",
+    description:
+      "Brands, restaurants, bars and food businesses looking for new ways to connect with people.",
+    services: ["Branding", "Marketing", "Creators", "Technology"],
+  },
+  {
+    number: "02",
+    title: "Hospitality",
+    description:
+      "Hotels and hospitality brands creating better digital and physical experiences for their guests.",
+    services: ["Strategy", "Experience", "Technology", "AI"],
+  },
+  {
+    number: "03",
+    title: "Tourism",
+    description:
+      "Projects that turn places, destinations and experiences into reasons to discover something new.",
+    services: ["Branding", "Content", "Marketing", "Experience"],
+  },
+  {
+    number: "04",
+    title: "Events",
+    description:
+      "From communication to technology, we create experiences that connect audiences and brands.",
+    services: ["Creators", "Technology", "Experience", "Marketing"],
+  },
+  {
+    number: "05",
+    title: "Entertainment",
+    description:
+      "New ideas for venues, nightlife, culture and entertainment businesses.",
+    services: ["Branding", "Marketing", "Creators", "Technology"],
+  },
+  {
+    number: "06",
+    title: "Retail",
+    description:
+      "Digital and creative strategies that help products and businesses become part of people's everyday lives.",
+    services: ["Strategy", "Branding", "Technology", "Marketing"],
+  },
+  {
+    number: "07",
+    title: "Brands",
+    description:
+      "For brands from any industry looking for a different way to communicate, grow or build.",
+    services: ["Strategy", "Creative", "Technology", "Experience"],
+  },
+];
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\pages\Home.tsx
+
+============================================================
+
+import Navbar from "../components/layout/Navbar";
+import Hero from "../components/sections/Hero";
+import Introduction from "../components/sections/Introduction";
+import Capabilities from "../components/sections/Capabilities";
+import Region from "../components/sections/Region";
+import Verticals from "../components/sections/Verticals";
+import Projects from "../components/sections/Projects";
+import Network from "../components/sections/Network";
+import Contact from "../components/sections/Contact";
+import Footer from "../components/layout/Footer";
+
+function Home() {
+  return (
+    <main>
+      <Navbar />
+
+      <Hero />
+
+      <Introduction />
+
+      <Capabilities />
+
+      <Region />
+
+      <Verticals />
+
+      <Projects />
+
+      <Network />
+
+      <Contact />
+
+      <Footer />
+
+      <section className="min-h-screen" />
+    </main>
+  );
+}
+
+export default Home;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\styles\animations.css
+
+============================================================
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\styles\globals.css
+
+============================================================
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --parana-black: #0a0a0a;
+  --parana-white: #f3f1eb;
+  --parana-gray: #a5a5a0;
+  --parana-line: rgba(243, 241, 235, 0.16);
+  --parana-accent: #d8ff3e;
+
+  font-family: "Manrope", sans-serif;
+  color: var(--parana-white);
+  background: var(--parana-black);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--parana-black);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--parana-black);
+  color: var(--parana-white);
+  overflow-x: hidden;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--parana-accent);
+  color: var(--parana-black);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--parana-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
+}
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\App.tsx
+
+============================================================
+
+import Home from "./pages/Home";
+
+function App() {
+  return <Home />;
+}
+
+export default App;
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\index.css
+
+============================================================
+
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+
+
+============================================================
+
+FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\main.tsx
+
+============================================================
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
+import "./styles/globals.css";
+import "./styles/animations.css";
+
+import { LanguageProvider } from "./context/LanguageContext";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  </React.StrictMode>
+);
