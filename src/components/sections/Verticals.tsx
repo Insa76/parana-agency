@@ -1,14 +1,8 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 import SectionLabel from "../ui/SectionLabel";
 
-function VerticalImage({
-  src,
-  alt,
-}: {
-  src: string;
-  alt: string;
-}) {
+function VerticalImage({ src, alt }: { src: string; alt: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
@@ -185,10 +179,7 @@ function Verticals() {
 
                 {/* Image */}
                 {hasImage && item.image && (
-                  <VerticalImage
-                    src={item.image}
-                    alt={item.title}
-                  />
+                  <VerticalImage src={item.image} alt={item.title} />
                 )}
               </motion.div>
             );

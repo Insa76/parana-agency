@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionLabel from "../ui/SectionLabel";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Introduction() {
   const { language } = useLanguage();
@@ -25,8 +25,7 @@ function Introduction() {
           titleLine2: "Brands changed too.",
           description:
             "People, communities and the ways we connect have changed. Brands need new ways to think, create and build relationships.",
-          disciplines:
-            "Identity. Content. Technology. Community. Experiences.",
+          disciplines: "Identity. Content. Technology. Community. Experiences.",
           closing: "Paraná connects the pieces.",
         };
 
@@ -36,7 +35,6 @@ function Introduction() {
       className="relative overflow-hidden bg-[var(--parana-white)] text-[var(--parana-black)]"
     >
       <div className="mx-auto w-full max-w-[1600px] px-5 py-16 md:px-8 md:py-20">
-
         {/* Header */}
         <div className="flex items-start justify-between">
           <SectionLabel number="02">{t.label}</SectionLabel>
@@ -54,7 +52,6 @@ function Introduction() {
 
         {/* Main statement */}
         <div className="py-14 md:py-16">
-
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -81,12 +78,10 @@ function Introduction() {
           >
             {t.titleLine2}
           </motion.h2>
-
         </div>
 
         {/* Information */}
         <div className="grid grid-cols-1 gap-10 border-t border-black/15 pt-6 md:grid-cols-12 md:gap-8">
-
           {/* Description */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -135,7 +130,6 @@ function Introduction() {
               </span>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

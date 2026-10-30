@@ -1,4 +1,4 @@
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Footer() {
   const { language } = useLanguage();
@@ -32,10 +32,7 @@ function Footer() {
         <div className="grid gap-12 border-t border-[var(--parana-line)] pt-10 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <a
-              href="#top"
-              className="inline-flex flex-col leading-none"
-            >
+            <a href="#top" className="inline-flex flex-col leading-none">
               <span className="font-display text-3xl font-bold tracking-[-0.05em]">
                 PARANÁ
               </span>

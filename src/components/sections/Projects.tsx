@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 import ProjectVisual from "../projects/ProjectVisual";
 
 function Projects() {
@@ -55,8 +55,7 @@ function Projects() {
             number: "Project 03",
             category: "Paraná Agency",
             title: "What's next?",
-            description:
-              "We are building new ideas, products and experiences.",
+            description: "We are building new ideas, products and experiences.",
           },
         };
 

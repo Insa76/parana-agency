@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Contact() {
   const { language } = useLanguage();
@@ -12,8 +12,7 @@ function Contact() {
           titleLine2: "algo.",
           cta: "Empezar una conversación",
           email: "hola@parana.agency",
-          closing:
-            "Paraná es un lugar. Pero también es una forma de avanzar.",
+          closing: "Paraná es un lugar. Pero también es una forma de avanzar.",
         }
       : {
           label: "08 / Let's talk",
@@ -21,8 +20,7 @@ function Contact() {
           titleLine2: "something.",
           cta: "Start a conversation",
           email: "hola@parana.agency",
-          closing:
-            "Paraná is a place. But it's also a way forward.",
+          closing: "Paraná is a place. But it's also a way forward.",
         };
 
   return (

@@ -1,24 +1,25 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
 
-  const t = language === "es"
-    ? {
-        work: "Trabajo",
-        about: "Nosotros",
-        network: "Red",
-        contact: "Hablemos",
-      }
-    : {
-        work: "Work",
-        about: "About",
-        network: "Network",
-        contact: "Let's talk",
-      };
+  const t =
+    language === "es"
+      ? {
+          work: "Trabajo",
+          about: "Nosotros",
+          network: "Red",
+          contact: "Hablemos",
+        }
+      : {
+          work: "Work",
+          about: "About",
+          network: "Network",
+          contact: "Let's talk",
+        };
 
   const links = [
     { label: t.work, href: "#work" },
