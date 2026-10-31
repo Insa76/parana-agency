@@ -1,0 +1,34 @@
+PARANÁ AGENCY — ACTUALIZACIÓN DE CONTENIDOS Y ESTRUCTURA
+
+Proyecto existente: C:\Users\cdi40\Desktop\parana-agency\parana-agency
+
+Copiar los archivos y carpetas de este paquete sobre la raíz del proyecto, conservando la misma estructura. Aceptar reemplazar los archivos existentes.
+
+Archivos incluidos:
+- index.html
+- src/pages/Home.tsx
+- src/components/layout/Navbar.tsx
+- src/components/layout/Footer.tsx
+- src/components/sections/Hero.tsx
+- src/components/sections/Introduction.tsx
+- src/components/sections/Capabilities.tsx
+- src/components/sections/Solutions.tsx (nuevo)
+- src/components/sections/Projects.tsx
+- src/components/sections/Verticals.tsx
+- src/components/sections/Region.tsx
+- src/components/sections/Contact.tsx
+
+No reemplazar imágenes ni modificar dependencias. Se reutilizan las imágenes actuales:
+public/images/hero/hero.png
+public/images/projects/orbit.png
+public/images/projects/drink-food.png
+
+La sección anterior Network deja de utilizarse en Home; el archivo Network.tsx puede permanecer sin afectar el sitio.
+
+Después de copiar, desde la carpeta del proyecto ejecutar:
+  npm run build
+
+Si la compilación termina correctamente, ejecutar:
+  npm run dev
+
+No se realiza publicación ni despliegue.

@@ -6,7 +6,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\layout\F
 
 ============================================================
 
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Footer() {
   const { language } = useLanguage();
@@ -134,7 +134,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\layout\N
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -506,7 +506,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Capabilities() {
   const { language } = useLanguage();
@@ -679,7 +679,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Contact() {
   const { language } = useLanguage();
@@ -822,7 +822,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Hero() {
   const { language } = useLanguage();
@@ -1030,7 +1030,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Network() {
   const { language } = useLanguage();
@@ -1270,7 +1270,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 import ProjectVisual from "../projects/ProjectVisual";
 
 function Projects() {
@@ -1428,7 +1428,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Region() {
   const { language } = useLanguage();
@@ -1608,7 +1608,7 @@ FILE: C:\Users\cdi40\Desktop\parana-agency\parana-agency\src\components\sections
 ============================================================
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../context/useLanguage";
 
 function Verticals() {
   const { language } = useLanguage();
