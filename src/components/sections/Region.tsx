@@ -1,86 +1,15 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "../../context/useLanguage";
+import { useLanguage } from "../../context/LanguageContext";
 
-export default function Region() {
+function Region() {
   const { language } = useLanguage();
-
-  const isSpanish = language === "es";
-
+  const es = language === "es";
   return (
-    <section
-      id="region"
-      className="relative overflow-hidden bg-white text-black"
-    >
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-16">
-        <div className="grid min-h-[70vh] content-between gap-20">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-black/40">
-              04 / {isSpanish ? "Origen" : "Origin"}
-            </span>
-
-            <h2 className="mt-6 max-w-4xl font-display text-[clamp(4rem,10vw,9rem)] font-bold leading-[0.82] tracking-[-0.065em]">
-              {isSpanish ? (
-                <>
-                  Nacimos en
-                  <br />
-                  el Nordeste.
-                </>
-              ) : (
-                <>
-                  Born in
-                  <br />
-                  the Northeast.
-                </>
-              )}
-            </h2>
-          </motion.div>
-
-          {/* Bottom information */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="grid gap-10 border-t border-black/10 pt-8 md:grid-cols-[1fr_auto] md:items-end"
-          >
-            <div className="max-w-xl">
-              <p className="text-sm leading-relaxed text-black/55 md:text-base">
-                {isSpanish
-                  ? "Estamos cerca de las personas, los negocios y la cultura que conocemos. Desde Chaco y Corrientes construimos para la región y para todo lo que viene después."
-                  : "We are close to the people, businesses and culture we know. From Chaco and Corrientes, we build for the region and for everything that comes next."}
-              </p>
-            </div>
-
-            <div className="flex items-end gap-8 md:gap-12">
-              <div>
-                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-black/35">
-                  Coordinates
-                </span>
-
-                <span className="mt-2 block font-mono text-xs">
-                  27°27′S / 58°59′W
-                </span>
-              </div>
-
-              <div>
-                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-black/35">
-                  Region
-                </span>
-
-                <span className="mt-2 block font-mono text-xs">
-                  NEA / Argentina
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+    <section id="region" className="relative overflow-hidden bg-[#111] text-[var(--parana-white)]">
+      <div className="mx-auto max-w-[1600px] px-5 py-24 md:px-8 md:py-32">
+        <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid gap-12 lg:grid-cols-[.35fr_1fr]"><span className="font-mono text-[9px] uppercase tracking-[.18em] text-[var(--parana-gray)]">08 / {es ? "Nuestra región" : "Our region"}</span><div><h2 className="font-display text-[clamp(3.5rem,8vw,8rem)] font-bold leading-[.85] tracking-[-.07em]">{es ? "Desde el Nordeste." : "From the Northeast."}<span className="block text-[var(--parana-accent)]">{es ? "Con mirada regional." : "With a regional outlook."}</span></h2><div className="mt-12 grid gap-8 border-t border-white/15 pt-7 md:grid-cols-[1fr_auto]"><p className="max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">{es ? "Con base en Chaco y Corrientes, conocemos de cerca la realidad de los comercios y las empresas de la región. Trabajamos desde esa cercanía, con una mirada abierta a nuevas oportunidades." : "Based in Chaco and Corrientes, we understand the realities of businesses across the region. We work from that proximity, with an open view of new opportunities."}</p><span className="self-end font-mono text-[9px] uppercase tracking-[.18em] text-white/50">Chaco / Corrientes / Argentina</span></div></div></motion.div>
       </div>
     </section>
   );
 }
+export default Region;

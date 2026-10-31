@@ -1,16 +1,24 @@
 
 import {
+  createContext,
+  useContext,
   useEffect,
   useMemo,
   useState,
-  useCallback,
   type ReactNode,
 } from "react";
 
-import {
-  LanguageContext,
-  type Language,
-} from "./LanguageContextDefinition";
+export type Language = "es" | "en";
+
+interface LanguageContextValue {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  toggleLanguage: () => void;
+}
+
+const LanguageContext = createContext<LanguageContextValue | undefined>(
+  undefined
+);
 
 const STORAGE_KEY = "parana-language";
 
@@ -28,30 +36,27 @@ function getInitialLanguage(): Language {
   return "es";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+export function LanguageProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [language, setLanguageState] = useState<Language>(
+    getInitialLanguage
+  );
 
-  const setLanguage = useCallback((nextLanguage: Language) => {
+  const setLanguage = (nextLanguage: Language) => {
     setLanguageState(nextLanguage);
 
     if (typeof window !== "undefined") {
       window.localStorage.setItem(STORAGE_KEY, nextLanguage);
       document.documentElement.lang = nextLanguage;
     }
-  }, []);
+  };
 
-  const toggleLanguage = useCallback(() => {
-    setLanguageState((currentLanguage) => {
-      const nextLanguage = currentLanguage === "es" ? "en" : "es";
-
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(STORAGE_KEY, nextLanguage);
-        document.documentElement.lang = nextLanguage;
-      }
-
-      return nextLanguage;
-    });
-  }, []);
+  const toggleLanguage = () => {
+    setLanguage(language === "es" ? "en" : "es");
+  };
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -63,7 +68,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLanguage,
       toggleLanguage,
     }),
-    [language, setLanguage, toggleLanguage]
+    [language]
   );
 
   return (
@@ -71,4 +76,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       {children}
     </LanguageContext.Provider>
   );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+
+  if (!context) {
+    throw new Error(
+      "useLanguage must be used inside a LanguageProvider"
+    );
+  }
+
+  return context;
 }
