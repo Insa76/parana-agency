@@ -178,7 +178,7 @@ export const translations = {
       titleLine1: "Construyamos",
       titleLine2: "algo.",
       cta: "Empezar una conversación",
-      email: "hola@parana.agency",
+      email: "chacodevinnovation@gmail.com",
       closing:
         "Paraná es un lugar. Pero también es una forma de avanzar.",
     },
@@ -373,7 +373,7 @@ export const translations = {
       titleLine1: "Let's build",
       titleLine2: "something.",
       cta: "Start a conversation",
-      email: "hola@parana.agency",
+      email: "chacodevinnovation@gmail.com",
       closing:
         "Paraná is a place. But it's also a way forward.",
     },
